@@ -26,8 +26,8 @@ var examplejs = require('examplejs');
 var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = require('gulp-util/lib/PluginError');
-
 var pluginName = 'gulp-examplejs';
+var fs = require('fs');
 
 /**
  * 创建异常对象
@@ -57,9 +57,15 @@ function gulpExamplejs(options) {
     }
 
     if (file.isBuffer()) {
+      var header;
+      if (options.head) {
+        header = String(fs.readFileSync(options.head));
+      }
+
       var contents = examplejs.build(file.contents, {
         timeout: options.timeout,
-        desc: options.desc
+        desc: options.desc || file.path,
+        header: header
       });
       file.contents = new Buffer(contents);
     }

@@ -37,15 +37,23 @@ describe('fixtures', function () {
 
   it('case2', function (done) {
     var input = "'@example\n\`\`\`js\nconsole.log(1);\n// > 1\n\`\`\`'";
-    var output = 'describe("none", function () {\n  var assert = require(\'should\');\n  var util = require(\'util\');\n  var examplejs_printLines;\n  function examplejs_print() {\n    examplejs_printLines.push(util.format.apply(util, arguments));\n  }\n\n  it("none", function() {\n    examplejs_printLines = [];\nexamplejs_print(1);\nassert.equal(examplejs_printLines.join("\\n"), "1"); examplejs_printLines = [];\n  });\n});';
+    var output = 'describe("./testfile.js", function () {\n  var assert = require(\'should\');\n  var util = require(\'util\');\n  var examplejs_printLines;\n  function examplejs_print() {\n    examplejs_printLines.push(util.format.apply(util, arguments));\n  }\n\n  it("none", function() {\n    examplejs_printLines = [];\nexamplejs_print(1);\nassert.equal(examplejs_printLines.join("\\n"), "1"); examplejs_printLines = [];\n  });\n});';
     expect_equals({}, input, output, done);
   });
 
   it('case2', function (done) {
     var input = "'@example\n\`\`\`js\nconsole.log(1);\n// > 1\n\`\`\`'";
-    var output = 'describe("none", function () {\n  var assert = require(\'should\');\n  var util = require(\'util\');\n  var examplejs_printLines;\n  function examplejs_print() {\n    examplejs_printLines.push(util.format.apply(util, arguments));\n  }\n  this.timeout(1234);\n\n  it("none", function() {\n    examplejs_printLines = [];\nexamplejs_print(1);\nassert.equal(examplejs_printLines.join("\\n"), "1"); examplejs_printLines = [];\n  });\n});';
+    var output = 'describe("./testfile.js", function () {\n  var assert = require(\'should\');\n  var util = require(\'util\');\n  var examplejs_printLines;\n  function examplejs_print() {\n    examplejs_printLines.push(util.format.apply(util, arguments));\n  }\n  this.timeout(1234);\n\n  it("none", function() {\n    examplejs_printLines = [];\nexamplejs_print(1);\nassert.equal(examplejs_printLines.join("\\n"), "1"); examplejs_printLines = [];\n  });\n});';
     expect_equals({
       timeout: 1234
+    }, input, output, done);
+  });
+
+  it('case3', function (done) {
+    var input = "'@example\n\`\`\`js\nconsole.log(1);\n// > 1\n\`\`\`'";
+    var output = 'var fs = require(\'fs\');\ndescribe("./testfile.js", function () {\n  var assert = require(\'should\');\n  var util = require(\'util\');\n  var examplejs_printLines;\n  function examplejs_print() {\n    examplejs_printLines.push(util.format.apply(util, arguments));\n  }\n\n  it("none", function() {\n    examplejs_printLines = [];\nexamplejs_print(1);\nassert.equal(examplejs_printLines.join("\\n"), "1"); examplejs_printLines = [];\n  });\n});';
+    expect_equals({
+      head: 'head.js'
     }, input, output, done);
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "gulp-examplejs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A tool for converting example code into test cases",
   "main": "lib/gulp-examplejs.js",
   "repository": {
@@ -35,7 +35,8 @@
   "scripts": {
     "test": "istanbul cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec",
     "lint": "jshint src/*.js",
-    "dist": "jdists src/gulp-examplejs.js -o lib/gulp-examplejs.js"
+    "dist": "jdists src/gulp-examplejs.js -o lib/gulp-examplejs.js && npm run test",
+    "mocha": "mocha"
   },
   "files": [
     "lib"
