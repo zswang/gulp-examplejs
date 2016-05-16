@@ -1,0 +1,43 @@
+{
+  "name": "gulp-examplejs",
+  "version": "0.0.1",
+  "description": "A tool for converting example code into test cases",
+  "main": "lib/gulp-examplejs.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zswang/gulp-examplejs.git"
+  },
+  "keywords": [
+    "gulp",
+    "plugin",
+    "examplejs"
+  ],
+  "author": {
+    "name": "zswang",
+    "url": "http://weibo.com/zswang"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zswang/gulp-examplejs/issues"
+  },
+  "homepage": "https://github.com/zswang/gulp-examplejs",
+  "devDependencies": {
+    "mocha": "2.0.1",
+    "istanbul": "0.3.17",
+    "should": "4.1.0",
+    "jshint": "2.8.0"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0",
+    "examplejs": "^0.0.17"
+  },
+  "scripts": {
+    "test": "istanbul cover --hook-run-in-context node_modules/mocha/bin/_mocha -- -R spec",
+    "lint": "jshint src/*.js",
+    "dist": "jdists src/gulp-examplejs.js -o lib/gulp-examplejs.js"
+  },
+  "files": [
+    "lib"
+  ]
+}
