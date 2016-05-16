@@ -28,6 +28,8 @@ var gutil = require('gulp-util');
 var PluginError = require('gulp-util/lib/PluginError');
 var pluginName = 'gulp-examplejs';
 var fs = require('fs');
+var url = require('url');
+var path = require('path');
 
 /**
  * 创建异常对象
@@ -64,7 +66,7 @@ function gulpExamplejs(options) {
 
       var contents = examplejs.build(file.contents, {
         timeout: options.timeout,
-        desc: options.desc || file.path,
+        desc: options.desc || url.format(path.relative('', file.path)),
         header: header
       });
       file.contents = new Buffer(contents);
