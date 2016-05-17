@@ -53,14 +53,16 @@ function createError(file, err) {
  */
 function gulpExamplejs(options) {
   options = options || {};
-  return through.obj(function (file, enc, callback) {
+  return through.obj(function(file, enc, callback) {
     if (file.isStream()) {
       return callback(createError(file, 'Streaming not supported'));
     }
 
     if (file.isBuffer()) {
       var header;
-      if (options.head) {
+      if (options.header) {
+        header = options.header;
+      } else if (options.head) {
         header = String(fs.readFileSync(options.head));
       }
 
