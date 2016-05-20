@@ -3,7 +3,7 @@
 gulp-examplejs
 -----
 
-> A tool for converting example code into test cases with [examplejs](https://github.com/zswang/gulp-examplejs).
+> A tool for converting example code into test cases with [examplejs](https://github.com/zswang/examplejs).
 
 ## Installation
 
@@ -32,6 +32,14 @@ gulp.task('dist', function() {
 - `timeout`
 
   Test case timeout
+
+- `head`
+
+  Include head filen
+
+- `header`
+
+  Include head text
 
 ## License
 
