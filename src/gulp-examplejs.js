@@ -69,7 +69,8 @@ function gulpExamplejs(options) {
       var contents = examplejs.build(file.contents, {
         timeout: options.timeout,
         desc: options.desc || url.format(path.relative('', file.path)),
-        header: header
+        header: header,
+        globals: options.globals
       });
       file.contents = new Buffer(contents);
     }
